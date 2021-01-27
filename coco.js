@@ -178,7 +178,7 @@ NodeList.prototype.coco = function () {
 		 * Original transform of object
 		 */
 
-		origTransforms.push( window.getComputedStyle( object ).transform );
+		origTransforms.push( window.getComputedStyle( objects[ i ] ).transform );
 
 	}
 
