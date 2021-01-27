@@ -1,0 +1,18 @@
+{
+  "name": "coco",
+  "version": "0.0.1",
+  "description": "Orientation controls for 3D CSS builds.",
+  "main": "coco.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "css",
+    "3d",
+    "orientation",
+    "orbit",
+    "controls"
+  ],
+  "author": "Bar Hatsor",
+  "license": "MIT"
+}
