@@ -21,6 +21,13 @@ Element.prototype.coco = function () {
 
 
 	/*
+	 * Original transform of object
+	 */
+
+	var origTransform = window.getComputedStyle( object ).transform;
+
+
+	/*
 	 * Disabling pointer events on object to:
  	 * I. Disable default dragging behavior.
 	 * II. Disable clicking when dragging.
@@ -118,8 +125,6 @@ Element.prototype.coco = function () {
 			 * while keeping original transform
 			 */
 
-			var origTransform = window.getComputedStyle( object ).transform;
-
 			object.style.transform = origTransform + ' rotateY(' + currentX + 'deg)';
 
 
@@ -156,6 +161,9 @@ NodeList.prototype.coco = function () {
 	var xOffset = 0;
 
 
+	var origTransforms = [];
+
+
 	/*
 	 * Disabling pointer events on objects to:
  	 * I. Disable default dragging behavior.
@@ -165,6 +173,12 @@ NodeList.prototype.coco = function () {
 	for ( var i = 0; i < objects.length; i ++ ) {
 
 		objects[ i ].style.pointerEvents = 'none';
+
+		/*
+		 * Original transform of object
+		 */
+
+		origTransforms.push( window.getComputedStyle( object ).transform );
 
 	}
 
@@ -264,9 +278,7 @@ NodeList.prototype.coco = function () {
 				 * while keeping original transform
 				 */
 
-				var origTransform = window.getComputedStyle( objects[ i ] ).transform;
-
-				objects[ i ].style.transform = origTransform + ' rotateY(' + currentX + 'deg)';
+				objects[ i ].style.transform = origTransforms[ i ] + ' rotateY(' + currentX + 'deg)';
 
 			}
 
