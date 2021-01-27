@@ -1,6 +1,6 @@
 {
   "name": "cocobin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Orientation controls for 3D CSS builds.",
   "main": "coco.js",
   "scripts": {
