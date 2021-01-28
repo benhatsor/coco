@@ -18,6 +18,9 @@ Element.prototype.coco = function () {
 	var currentX;
 	var initialX;
 	var xOffset = 0;
+	
+	var posX = 0;
+	var posY = 0;
 
 
 	/*
@@ -50,6 +53,8 @@ Element.prototype.coco = function () {
 	document.addEventListener( "mousedown", dragStart, false );
 	document.addEventListener( "mouseup", dragEnd, false );
 	document.addEventListener( "mousemove", drag, false );
+	
+	document.addEventListener( "keydown", checkKey, false );
 
 	/*
 	 * Touch events for mobile
@@ -119,19 +124,53 @@ Element.prototype.coco = function () {
 
 			xOffset = currentX;
 
-
-			/*
-			 * Change rotation of object
-			 * while keeping original transform
-			 */
-
-			object.style.transform =  'rotateY(' + currentX + 'deg) ' + origTransform;
-
+			updateTransform();
 
 			click = false;
 
 		}
 
+	}
+	
+	function checkKey( e ) {
+
+            // up
+	    if (e.keyCode == '38' || e.keyCode == '87') {
+		posY++;
+	    }
+		
+            // down
+	    else if (e.keyCode == '40' || e.keyCode == '83') {
+		posY--;
+	    }
+		
+	    // left
+	    else if (e.keyCode == '37' || e.keyCode == '65') {
+		posX++;
+	    }
+		
+            // right
+	    else if (e.keyCode == '39' || e.keyCode == '68') {
+		posX--;
+	    }
+	    	
+            updateTransform();
+
+	}
+
+	
+	/*
+	 * Change rotation of object
+	 * while keeping original transform
+	 */
+	
+	function updateTransform() {
+		
+		object.style.transform = 'translateX(' + posX + 'px) ' +
+					 'translateY(' + posY + 'px) ' +
+			                 'rotateY(' + currentX + 'deg) ' +
+			                 origTransform;
+		
 	}
 
 };
@@ -159,6 +198,9 @@ NodeList.prototype.coco = function () {
 	var currentX;
 	var initialX;
 	var xOffset = 0;
+	
+	var posX = 0;
+	var posY = 0;
 
 
 	var origTransforms = [];
@@ -197,6 +239,8 @@ NodeList.prototype.coco = function () {
 	document.addEventListener( "mousedown", dragStart, false );
 	document.addEventListener( "mouseup", dragEnd, false );
 	document.addEventListener( "mousemove", drag, false );
+	
+	document.addEventListener( "keydown", checkKey, false );
 
 	/*
 	 * Touch events for mobile
@@ -270,23 +314,55 @@ NodeList.prototype.coco = function () {
 
 			xOffset = currentX;
 
-
-			for ( var i = 0; i < objects.length; i ++ ) {
-
-				/*
-				 * Change rotation of object
-				 * while keeping original transform
-				 */
-
-				objects[ i ].style.transform = 'rotateY(' + currentX + 'deg) ' + origTransforms[ i ];
-
-			}
-
+			updateTransforms();
 
 			click = false;
 
 		}
 
+	}
+	
+	function checkKey( e ) {
+
+            // up
+	    if (e.keyCode == '38' || e.keyCode == '87') {
+		posY++;
+	    }
+		
+            // down
+	    else if (e.keyCode == '40' || e.keyCode == '83') {
+		posY--;
+	    }
+		
+	    // left
+	    else if (e.keyCode == '37' || e.keyCode == '65') {
+		posX++;
+	    }
+		
+            // right
+	    else if (e.keyCode == '39' || e.keyCode == '68') {
+		posX--;
+	    }
+	    	
+            updateTransforms();
+
+	}
+
+	/*
+	 * Change rotation of objects
+	 * while keeping original transform
+	 */
+	
+	function updateTransforms() {
+		
+		for ( var i = 0; i < objects.length; i ++ ) {
+				
+			objects[ i ].style.transform = 'translateX(' + posX + 'px) ' +
+						       'translateY(' + posY + 'px) ' +
+						       'rotateY(' + currentX + 'deg) ' +
+						       origTransforms[ i ];
+		}
+		
 	}
 
 };
