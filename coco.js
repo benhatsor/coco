@@ -136,12 +136,12 @@ Element.prototype.coco = function () {
 
             // up
 	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posZ++;
+		posZ += 2;
 	    }
 		
             // down
 	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posZ--;
+		posZ -= 2;
 	    }
 		
 	    // left
@@ -326,12 +326,12 @@ NodeList.prototype.coco = function () {
 
             // up
 	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posZ++;
+		posZ += 2;
 	    }
 		
             // down
 	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posZ--;
+		posZ -= 2;
 	    }
 		
 	    // left
