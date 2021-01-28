@@ -99,7 +99,11 @@ Element.prototype.coco = function () {
 
 		if ( click == true ) {
 
-			object.click();
+			object.dispatchEvent(new MouseEvent("click", {
+			    "view": window,
+			    "bubbles": true,
+			    "cancelable": false
+			}));
 
 		}
 
@@ -286,8 +290,12 @@ NodeList.prototype.coco = function () {
 		if ( click == true ) {
 
 			for ( var i = 0; i < objects.length; i ++ ) {
-
-				objects[ i ].click();
+				
+				objects[ i ].dispatchEvent(new MouseEvent("click", {
+				    "view": window,
+				    "bubbles": true,
+				    "cancelable": false
+				}));
 
 			}
 
