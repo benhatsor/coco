@@ -28,6 +28,12 @@ Element.prototype.coco = function () {
 	 */
 
 	var origTransform = window.getComputedStyle( object ).transform;
+	
+	if (origTransform == 'none') {
+		
+		origTransform = '';
+		
+	}
 
 
 	/*
@@ -137,24 +143,14 @@ Element.prototype.coco = function () {
 	}
 	
 	function checkKey( e ) {
-
-            // up
-	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posZ += 2;
-	    }
 		
-            // down
-	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posZ -= 2;
-	    }
-		
-	    // left
-	    else if (e.keyCode == '37' || e.keyCode == '65') {
+	    if (e.keyCode == '38' || e.keyCode == '87') { // up
+		posZ += 3;
+	    } else if (e.keyCode == '40' || e.keyCode == '83') { // down
+		posZ -= 3;
+	    } else if (e.keyCode == '37' || e.keyCode == '65') { // left
 		posX++;
-	    }
-		
-            // right
-	    else if (e.keyCode == '39' || e.keyCode == '68') {
+	    } else if (e.keyCode == '39' || e.keyCode == '68') { // right
 		posX--;
 	    }
 	    	
@@ -225,6 +221,12 @@ NodeList.prototype.coco = function () {
 		 */
 
 		origTransforms.push( window.getComputedStyle( objects[ i ] ).transform );
+		
+		if (origTransforms[ i ] == 'none') {
+		
+			origTransforms[ i ] = '';
+
+		}
 
 	}
 
@@ -332,23 +334,13 @@ NodeList.prototype.coco = function () {
 	
 	function checkKey( e ) {
 
-            // up
-	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posZ += 2;
-	    }
-		
-            // down
-	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posZ -= 2;
-	    }
-		
-	    // left
-	    else if (e.keyCode == '37' || e.keyCode == '65') {
+	    if (e.keyCode == '38' || e.keyCode == '87') { // up
+		posZ += 3;
+	    } else if (e.keyCode == '40' || e.keyCode == '83') { // down
+		posZ -= 3;
+	    } else if (e.keyCode == '37' || e.keyCode == '65') { // left
 		posX++;
-	    }
-		
-            // right
-	    else if (e.keyCode == '39' || e.keyCode == '68') {
+	    } else if (e.keyCode == '39' || e.keyCode == '68') { // right
 		posX--;
 	    }
 	    	
