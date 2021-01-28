@@ -20,7 +20,7 @@ Element.prototype.coco = function () {
 	var xOffset = 0;
 	
 	var posX = 0;
-	var posY = 0;
+	var posZ = 0;
 
 
 	/*
@@ -136,12 +136,12 @@ Element.prototype.coco = function () {
 
             // up
 	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posY++;
+		posZ++;
 	    }
 		
             // down
 	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posY--;
+		posZ--;
 	    }
 		
 	    // left
@@ -167,7 +167,7 @@ Element.prototype.coco = function () {
 	function updateTransform() {
 		
 		object.style.transform = 'translateX(' + posX + 'px) ' +
-					 'translateY(' + posY + 'px) ' +
+					 'translateY(' + posZ + 'px) ' +
 			                 'rotateY(' + currentX + 'deg) ' +
 			                 origTransform;
 		
@@ -200,7 +200,7 @@ NodeList.prototype.coco = function () {
 	var xOffset = 0;
 	
 	var posX = 0;
-	var posY = 0;
+	var posZ = 0;
 
 
 	var origTransforms = [];
@@ -326,12 +326,12 @@ NodeList.prototype.coco = function () {
 
             // up
 	    if (e.keyCode == '38' || e.keyCode == '87') {
-		posY++;
+		posZ++;
 	    }
 		
             // down
 	    else if (e.keyCode == '40' || e.keyCode == '83') {
-		posY--;
+		posZ--;
 	    }
 		
 	    // left
@@ -358,7 +358,7 @@ NodeList.prototype.coco = function () {
 		for ( var i = 0; i < objects.length; i ++ ) {
 				
 			objects[ i ].style.transform = 'translateX(' + posX + 'px) ' +
-						       'translateY(' + posY + 'px) ' +
+						       'translateY(' + posZ + 'px) ' +
 						       'rotateY(' + currentX + 'deg) ' +
 						       origTransforms[ i ];
 		}
