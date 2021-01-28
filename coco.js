@@ -167,7 +167,7 @@ Element.prototype.coco = function () {
 	function updateTransform() {
 		
 		object.style.transform = 'translateX(' + posX + 'px) ' +
-					 'translateY(' + posZ + 'px) ' +
+					 'translateZ(' + posZ + 'px) ' +
 			                 'rotateY(' + currentX + 'deg) ' +
 			                 origTransform;
 		
@@ -358,7 +358,7 @@ NodeList.prototype.coco = function () {
 		for ( var i = 0; i < objects.length; i ++ ) {
 				
 			objects[ i ].style.transform = 'translateX(' + posX + 'px) ' +
-						       'translateY(' + posZ + 'px) ' +
+						       'translateZ(' + posZ + 'px) ' +
 						       'rotateY(' + currentX + 'deg) ' +
 						       origTransforms[ i ];
 		}
