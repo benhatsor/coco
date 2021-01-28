@@ -125,7 +125,7 @@ Element.prototype.coco = function () {
 			 * while keeping original transform
 			 */
 
-			object.style.transform = origTransform + ' rotateY(' + currentX + 'deg)';
+			object.style.transform =  'rotateY(' + currentX + 'deg) ' + origTransform;
 
 
 			click = false;
@@ -278,7 +278,7 @@ NodeList.prototype.coco = function () {
 				 * while keeping original transform
 				 */
 
-				objects[ i ].style.transform = origTransforms[ i ] + ' rotateY(' + currentX + 'deg)';
+				objects[ i ].style.transform = 'rotateY(' + currentX + 'deg) ' + origTransforms[ i ];
 
 			}
 
