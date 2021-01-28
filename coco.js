@@ -3,7 +3,7 @@
  * CSS Orientation Controls
  * By Bar Hatsor (MIT License)
  *
- * Manual user drag (rotate) override handling
+ * Manual user drag (rotate) and keypad (move) override handling
  */
 
 Element.prototype.coco = function () {

@@ -6,7 +6,7 @@ Orientation controls for 3D CSS builds.
 
 Import the script in your HTML:
 ```HTML
-<script src="https://unpkg.com/cocobin@0.0.8/coco.js"></script>
+<script src="https://unpkg.com/cocobean@0.0.9/coco.js"></script>
 ```
 
 And add coco to an element:
