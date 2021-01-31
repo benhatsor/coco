@@ -42,8 +42,6 @@ Element.prototype.coco = function ( defaults ) {
 	 * Check if enabled default controls
 	 */
 
-	defaults = defaults === false ? defaults : true;
-
 	if ( defaults === true ) {
 
 
@@ -268,8 +266,6 @@ NodeList.prototype.coco = function ( defaults ) {
 	/*
 	 * Check if enabled default controls
 	 */
-
-	defaults = defaults === false ? defaults : true;
 	
 	if ( defaults === true ) {
 
