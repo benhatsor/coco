@@ -7,7 +7,7 @@
  * With manual user drag (rotate) and keypad (move) override handling
  */
 
-Element.prototype.coco = function ( controls ) {
+Element.prototype.coco = function ( defaults ) {
 
 	/* "this" is an Element */
 	var object = this;
@@ -42,7 +42,9 @@ Element.prototype.coco = function ( controls ) {
 	 * Check if enabled default controls
 	 */
 
-	if ( controls != false ) {
+	defaults = defaults === false ? defaults : true;
+
+	if ( defaults === true ) {
 
 
 		/*
@@ -225,7 +227,7 @@ Element.prototype.coco = function ( controls ) {
  * to Element when needing seperate handlers.
  */
 
-NodeList.prototype.coco = function ( controls ) {
+NodeList.prototype.coco = function ( defaults ) {
 
 	/* "this" is a NodeList */
 	var objects = this;
@@ -267,7 +269,9 @@ NodeList.prototype.coco = function ( controls ) {
 	 * Check if enabled default controls
 	 */
 
-	if ( controls != false ) {
+	defaults = defaults === false ? defaults : true;
+	
+	if ( defaults === true ) {
 
 		/*
 		 * Disabling pointer events on objects to:
