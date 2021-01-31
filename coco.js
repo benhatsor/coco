@@ -41,8 +41,8 @@ Element.prototype.coco = function ( defaults ) {
 	/*
 	 * Check if enabled default controls
 	 */
-
-	if ( defaults != false ) {
+	
+	if ( defaults !== false ) {
 
 
 		/*
@@ -267,7 +267,7 @@ NodeList.prototype.coco = function ( defaults ) {
 	 * Check if enabled default controls
 	 */
 	
-	if ( defaults != false ) {
+	if ( defaults !== false ) {
 
 		/*
 		 * Disabling pointer events on objects to:
