@@ -78,106 +78,106 @@ Element.prototype.coco = function ( defaults ) {
 		document.addEventListener( "touchstart", dragStart, false );
 		document.addEventListener( "touchend", dragEnd, false );
 		document.addEventListener( "touchmove", drag, false );
+		
+
+	}
 
 
+	function dragStart( e ) {
 
-		function dragStart( e ) {
+		if ( e.type === "touchstart" ) {
 
-			if ( e.type === "touchstart" ) {
+			initialX = e.touches[ 0 ].clientX - xOffset;
 
-				initialX = e.touches[ 0 ].clientX - xOffset;
+		} else {
+
+			initialX = e.clientX - xOffset;
+
+		}
+
+		active = true;
+		click = true;
+
+	}
+
+	function dragEnd() {
+
+		initialX = currentX;
+
+		xOffset = currentX;
+		active = false;
+
+
+		/*
+		 * Click detection.
+		 * Simulates click if not dragging to compensate
+		 * disabling pointer events on object.
+		 */
+
+		if ( click == true ) {
+
+			object.dispatchEvent( new MouseEvent( "click", {
+			    "view": window,
+			    "bubbles": true,
+			    "cancelable": false
+			} ) );
+
+		}
+
+
+	}
+
+	function drag( e ) {
+
+		if ( active ) {
+
+			e.preventDefault();
+
+			if ( e.type === "touchmove" ) {
+
+				currentX = e.touches[ 0 ].clientX - initialX;
 
 			} else {
 
-				initialX = e.clientX - xOffset;
+				currentX = e.clientX - initialX;
 
 			}
-
-			active = true;
-			click = true;
-
-		}
-
-		function dragEnd() {
-
-			initialX = currentX;
 
 			xOffset = currentX;
-			active = false;
-
-
-			/*
-			 * Click detection.
-			 * Simulates click if not dragging to compensate
-			 * disabling pointer events on object.
-			 */
-
-			if ( click == true ) {
-
-				object.dispatchEvent( new MouseEvent( "click", {
-				    "view": window,
-				    "bubbles": true,
-				    "cancelable": false
-				} ) );
-
-			}
-
-
-		}
-
-		function drag( e ) {
-
-			if ( active ) {
-
-				e.preventDefault();
-
-				if ( e.type === "touchmove" ) {
-
-					currentX = e.touches[ 0 ].clientX - initialX;
-
-				} else {
-
-					currentX = e.clientX - initialX;
-
-				}
-
-				xOffset = currentX;
-
-				updateTransform();
-
-				click = false;
-
-			}
-
-		}
-
-		function checkKey( e ) {
-
-		    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
-
-				posZ += 3;
-
-			} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-				posZ -= 3;
-
-			} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-				posX ++;
-
-			} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
-
-				posX --;
-
-			}
 
 			updateTransform();
+
+			click = false;
 
 		}
 
 	}
 
+	function checkKey( e ) {
 
+	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+			posZ -= 3;
+
+		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+			posX ++;
+
+		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+			posX --;
+
+		}
+
+		updateTransform();
+
+	}
+	
+	
 	/*
 	 * Change rotation of object
 	 * while keeping original transform
@@ -307,107 +307,107 @@ NodeList.prototype.coco = function ( defaults ) {
 		document.addEventListener( "touchend", dragEnd, false );
 		document.addEventListener( "touchmove", drag, false );
 
+	}
+	
+	
+	function dragStart( e ) {
+
+		if ( e.type === "touchstart" ) {
+
+			initialX = e.touches[ 0 ].clientX - xOffset;
+
+		} else {
+
+			initialX = e.clientX - xOffset;
+
+		}
+
+		active = true;
+		click = true;
+
+	}
+
+	function dragEnd() {
+
+		initialX = currentX;
+
+		xOffset = currentX;
+		active = false;
 
 
-		function dragStart( e ) {
+		/*
+		 * Click detection.
+		 * Simulates click if not dragging to compensate
+		 * disabling pointer events on objects.
+		 */
 
-			if ( e.type === "touchstart" ) {
+		if ( click == true ) {
 
-				initialX = e.touches[ 0 ].clientX - xOffset;
+			for ( var i = 0; i < objects.length; i ++ ) {
+
+				objects[ i ].dispatchEvent( new MouseEvent( "click", {
+				    "view": window,
+				    "bubbles": true,
+				    "cancelable": false
+				} ) );
+
+			}
+
+		}
+
+
+	}
+
+	function drag( e ) {
+
+		if ( active ) {
+
+			e.preventDefault();
+
+			if ( e.type === "touchmove" ) {
+
+				currentX = e.touches[ 0 ].clientX - initialX;
 
 			} else {
 
-				initialX = e.clientX - xOffset;
+				currentX = e.clientX - initialX;
 
 			}
-
-			active = true;
-			click = true;
-
-		}
-
-		function dragEnd() {
-
-			initialX = currentX;
 
 			xOffset = currentX;
-			active = false;
-
-
-			/*
-			 * Click detection.
-			 * Simulates click if not dragging to compensate
-			 * disabling pointer events on objects.
-			 */
-
-			if ( click == true ) {
-
-				for ( var i = 0; i < objects.length; i ++ ) {
-
-					objects[ i ].dispatchEvent( new MouseEvent( "click", {
-					    "view": window,
-					    "bubbles": true,
-					    "cancelable": false
-					} ) );
-
-				}
-
-			}
-
-
-		}
-
-		function drag( e ) {
-
-			if ( active ) {
-
-				e.preventDefault();
-
-				if ( e.type === "touchmove" ) {
-
-					currentX = e.touches[ 0 ].clientX - initialX;
-
-				} else {
-
-					currentX = e.clientX - initialX;
-
-				}
-
-				xOffset = currentX;
-
-				updateTransforms();
-
-				click = false;
-
-			}
-
-		}
-
-		function checkKey( e ) {
-
-		    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
-
-				posZ += 3;
-
-			} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-				posZ -= 3;
-
-			} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-				posX ++;
-
-			} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
-
-				posX --;
-
-			}
 
 			updateTransforms();
+
+			click = false;
 
 		}
 
 	}
+
+	function checkKey( e ) {
+
+	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+			posZ -= 3;
+
+		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+			posX ++;
+
+		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+			posX --;
+
+		}
+
+		updateTransforms();
+
+	}
+	
 
 	/*
 	 * Change rotation of objects
