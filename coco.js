@@ -3,7 +3,8 @@
  * CSS Orientation Controls
  * By Bar Hatsor (MIT License)
  *
- * Manual user drag (rotate) and keypad (move) override handling
+ * CSS Euclidean Positioning System
+ * With manual user drag (rotate) and keypad (move) override handling
  */
 
 Element.prototype.coco = function () {
@@ -18,8 +19,9 @@ Element.prototype.coco = function () {
 	var currentX;
 	var initialX;
 	var xOffset = 0;
-	
+
 	var posX = 0;
+	var posY = 0;
 	var posZ = 0;
 
 
@@ -28,11 +30,11 @@ Element.prototype.coco = function () {
 	 */
 
 	var origTransform = window.getComputedStyle( object ).transform;
-	
-	if (origTransform == 'none') {
-		
+
+	if ( origTransform == 'none' ) {
+
 		origTransform = '';
-		
+
 	}
 
 
@@ -59,7 +61,7 @@ Element.prototype.coco = function () {
 	document.addEventListener( "mousedown", dragStart, false );
 	document.addEventListener( "mouseup", dragEnd, false );
 	document.addEventListener( "mousemove", drag, false );
-	
+
 	document.addEventListener( "keydown", checkKey, false );
 
 	/*
@@ -105,11 +107,11 @@ Element.prototype.coco = function () {
 
 		if ( click == true ) {
 
-			object.dispatchEvent(new MouseEvent("click", {
+			object.dispatchEvent( new MouseEvent( "click", {
 			    "view": window,
 			    "bubbles": true,
 			    "cancelable": false
-			}));
+			} ) );
 
 		}
 
@@ -141,37 +143,65 @@ Element.prototype.coco = function () {
 		}
 
 	}
-	
+
 	function checkKey( e ) {
-		
-	    if (e.keyCode == '38' || e.keyCode == '87') { // up
-		posZ += 3;
-	    } else if (e.keyCode == '40' || e.keyCode == '83') { // down
-		posZ -= 3;
-	    } else if (e.keyCode == '37' || e.keyCode == '65') { // left
-		posX++;
-	    } else if (e.keyCode == '39' || e.keyCode == '68') { // right
-		posX--;
-	    }
-	    	
-            updateTransform();
+
+	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+			posZ -= 3;
+
+		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+			posX ++;
+
+		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+			posX --;
+
+		}
+
+		updateTransform();
 
 	}
 
-	
+
 	/*
 	 * Change rotation of object
 	 * while keeping original transform
 	 */
-	
+
 	function updateTransform() {
-		
+
 		object.style.transform = 'translateX(' + posX + 'px) ' +
+					 'translateY(' + posY + 'px) ' +
 					 'translateZ(' + posZ + 'px) ' +
 			                 'rotateY(' + currentX + 'deg) ' +
 			                 origTransform;
-		
+
 	}
+
+
+	return {
+
+		/*
+		 * Camera control
+		 */
+
+		camera: function ( x, y, z ) {
+
+			posX = x;
+			posY = y;
+			posZ = z;
+
+			updateTransform();
+
+		}
+	};
+
 
 };
 
@@ -198,8 +228,9 @@ NodeList.prototype.coco = function () {
 	var currentX;
 	var initialX;
 	var xOffset = 0;
-	
+
 	var posX = 0;
+	var posY = 0;
 	var posZ = 0;
 
 
@@ -221,9 +252,9 @@ NodeList.prototype.coco = function () {
 		 */
 
 		origTransforms.push( window.getComputedStyle( objects[ i ] ).transform );
-		
-		if (origTransforms[ i ] == 'none') {
-		
+
+		if ( origTransforms[ i ] == 'none' ) {
+
 			origTransforms[ i ] = '';
 
 		}
@@ -245,7 +276,7 @@ NodeList.prototype.coco = function () {
 	document.addEventListener( "mousedown", dragStart, false );
 	document.addEventListener( "mouseup", dragEnd, false );
 	document.addEventListener( "mousemove", drag, false );
-	
+
 	document.addEventListener( "keydown", checkKey, false );
 
 	/*
@@ -292,12 +323,12 @@ NodeList.prototype.coco = function () {
 		if ( click == true ) {
 
 			for ( var i = 0; i < objects.length; i ++ ) {
-				
-				objects[ i ].dispatchEvent(new MouseEvent("click", {
+
+				objects[ i ].dispatchEvent( new MouseEvent( "click", {
 				    "view": window,
 				    "bubbles": true,
 				    "cancelable": false
-				}));
+				} ) );
 
 			}
 
@@ -331,20 +362,28 @@ NodeList.prototype.coco = function () {
 		}
 
 	}
-	
+
 	function checkKey( e ) {
 
-	    if (e.keyCode == '38' || e.keyCode == '87') { // up
-		posZ += 3;
-	    } else if (e.keyCode == '40' || e.keyCode == '83') { // down
-		posZ -= 3;
-	    } else if (e.keyCode == '37' || e.keyCode == '65') { // left
-		posX++;
-	    } else if (e.keyCode == '39' || e.keyCode == '68') { // right
-		posX--;
-	    }
-	    	
-            updateTransforms();
+	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+			posZ -= 3;
+
+		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+			posX ++;
+
+		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+			posX --;
+
+		}
+
+		updateTransforms();
 
 	}
 
@@ -352,18 +391,37 @@ NodeList.prototype.coco = function () {
 	 * Change rotation of objects
 	 * while keeping original transform
 	 */
-	
+
 	function updateTransforms() {
-		
+
 		for ( var i = 0; i < objects.length; i ++ ) {
-				
+
 			objects[ i ].style.transform = 'translateX(' + posX + 'px) ' +
+						       'translateY(' + posY + 'px) ' +
 						       'translateZ(' + posZ + 'px) ' +
 						       'rotateY(' + currentX + 'deg) ' +
 						       origTransforms[ i ];
+
 		}
-		
+
 	}
 
-};
 
+	return {
+
+		/*
+		 * Camera control
+		 */
+
+		camera: function ( x, y, z ) {
+
+			posX = x;
+			posY = y;
+			posZ = z;
+
+			updateTransforms();
+
+		}
+	};
+
+};
