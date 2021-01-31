@@ -41,8 +41,3 @@ var coco = elements.coco();
 ## Examples
 
 [Check out this collection](https://codepen.io/collection/XbyYMZ) on Codepen.
-
-## License
-
-[MIT](https://opensource.org/licenses/mit-license.php)
-Copyright © 2020 Bar Hatsor (<a href="https://www.berryscript.com">@barhatsor</a>)
