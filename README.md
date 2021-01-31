@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://github.com/barhatsor/coco"><img src="icon.svg" height="90" width="90"><br>coco</a></h1>
+<h1 align="center"><a href="https://github.com/barhatsor/coco"><img src="https://raw.githubusercontent.com/barhatsor/coco/main/icon.svg" height="90" width="90"><br>coco</a></h1>
 <p align="center">
   <h3 align="center">  
     CSS Orientation Controls
@@ -14,7 +14,7 @@
 
 Import the script in your HTML:
 ```HTML
-<script src="https://unpkg.com/cocobean@0.1.6/coco.min.js"></script>
+<script src="https://unpkg.com/cocobean@0.1.7/coco.min.js"></script>
 ```
 
 And add coco to an element:
