@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://github.com/barhatsor/coco"><img src="coco.svg" height="90" width="90"><br>coco</a></h1>
+<h1 align="center"><a href="https://github.com/barhatsor/coco"><img src="icon.svg" height="90" width="90"><br>coco</a></h1>
 <p align="center">
   <h3 align="center">  
     CSS Orientation Controls
