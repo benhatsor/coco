@@ -1,8 +1,8 @@
 {
   "name": "cocobean",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Orientation controls for 3D CSS builds.",
-  "main": "coco.js",
+  "main": "coco.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
