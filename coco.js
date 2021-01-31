@@ -16,8 +16,8 @@ Element.prototype.coco = function () {
 	var active = false;
 	var click = false;
 
-	var currentX;
-	var initialX;
+	var currentX = 0;
+	var initialX = 0;
 	var xOffset = 0;
 
 	var posX = 0;
@@ -225,8 +225,8 @@ NodeList.prototype.coco = function () {
 	var active = false;
 	var click = false;
 
-	var currentX;
-	var initialX;
+	var currentX = 0;
+	var initialX = 0;
 	var xOffset = 0;
 
 	var posX = 0;
