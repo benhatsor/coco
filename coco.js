@@ -7,7 +7,7 @@
  * With manual user drag (rotate) and keypad (move) override handling
  */
 
-Element.prototype.coco = function () {
+Element.prototype.coco = function ( controls ) {
 
 	/* "this" is an Element */
 	var object = this;
@@ -39,132 +39,141 @@ Element.prototype.coco = function () {
 
 
 	/*
-	 * Disabling pointer events on object to:
- 	 * I. Disable default dragging behavior.
-	 * II. Disable clicking when dragging.
+	 * Check if enabled default controls
 	 */
 
-	object.style.pointerEvents = 'none';
-
-
-	/*
-	 * Add grab cursor to document, indicate draggable
-	 */
-
-	document.documentElement.style.cursor = 'grab';
-
-
-	/*
-	 * Adding event listeners on document
-	 */
-
-	document.addEventListener( "mousedown", dragStart, false );
-	document.addEventListener( "mouseup", dragEnd, false );
-	document.addEventListener( "mousemove", drag, false );
-
-	document.addEventListener( "keydown", checkKey, false );
-
-	/*
-	 * Touch events for mobile
-	 */
-
-	document.addEventListener( "touchstart", dragStart, false );
-	document.addEventListener( "touchend", dragEnd, false );
-	document.addEventListener( "touchmove", drag, false );
-
-
-
-	function dragStart( e ) {
-
-		if ( e.type === "touchstart" ) {
-
-			initialX = e.touches[ 0 ].clientX - xOffset;
-
-		} else {
-
-			initialX = e.clientX - xOffset;
-
-		}
-
-		active = true;
-		click = true;
-
-	}
-
-	function dragEnd() {
-
-		initialX = currentX;
-
-		xOffset = currentX;
-		active = false;
+	if ( controls != false ) {
 
 
 		/*
-		 * Click detection.
-		 * Simulates click if not dragging to compensate
-		 * disabling pointer events on object.
+		 * Disabling pointer events on object to:
+		 * I. Disable default dragging behavior.
+		 * II. Disable clicking when dragging.
 		 */
 
-		if ( click == true ) {
-
-			object.dispatchEvent( new MouseEvent( "click", {
-			    "view": window,
-			    "bubbles": true,
-			    "cancelable": false
-			} ) );
-
-		}
+		object.style.pointerEvents = 'none';
 
 
-	}
+		/*
+		 * Add grab cursor to document, indicate draggable
+		 */
 
-	function drag( e ) {
+		document.documentElement.style.cursor = 'grab';
 
-		if ( active ) {
 
-			e.preventDefault();
+		/*
+		 * Adding event listeners on document
+		 */
 
-			if ( e.type === "touchmove" ) {
+		document.addEventListener( "mousedown", dragStart, false );
+		document.addEventListener( "mouseup", dragEnd, false );
+		document.addEventListener( "mousemove", drag, false );
 
-				currentX = e.touches[ 0 ].clientX - initialX;
+		document.addEventListener( "keydown", checkKey, false );
+
+		/*
+		 * Touch events for mobile
+		 */
+
+		document.addEventListener( "touchstart", dragStart, false );
+		document.addEventListener( "touchend", dragEnd, false );
+		document.addEventListener( "touchmove", drag, false );
+
+
+
+		function dragStart( e ) {
+
+			if ( e.type === "touchstart" ) {
+
+				initialX = e.touches[ 0 ].clientX - xOffset;
 
 			} else {
 
-				currentX = e.clientX - initialX;
+				initialX = e.clientX - xOffset;
 
 			}
 
+			active = true;
+			click = true;
+
+		}
+
+		function dragEnd() {
+
+			initialX = currentX;
+
 			xOffset = currentX;
+			active = false;
+
+
+			/*
+			 * Click detection.
+			 * Simulates click if not dragging to compensate
+			 * disabling pointer events on object.
+			 */
+
+			if ( click == true ) {
+
+				object.dispatchEvent( new MouseEvent( "click", {
+				    "view": window,
+				    "bubbles": true,
+				    "cancelable": false
+				} ) );
+
+			}
+
+
+		}
+
+		function drag( e ) {
+
+			if ( active ) {
+
+				e.preventDefault();
+
+				if ( e.type === "touchmove" ) {
+
+					currentX = e.touches[ 0 ].clientX - initialX;
+
+				} else {
+
+					currentX = e.clientX - initialX;
+
+				}
+
+				xOffset = currentX;
+
+				updateTransform();
+
+				click = false;
+
+			}
+
+		}
+
+		function checkKey( e ) {
+
+		    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+				posZ += 3;
+
+			} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+				posZ -= 3;
+
+			} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+				posX ++;
+
+			} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+				posX --;
+
+			}
 
 			updateTransform();
 
-			click = false;
-
 		}
-
-	}
-
-	function checkKey( e ) {
-
-	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
-
-			posZ += 3;
-
-		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-			posZ -= 3;
-
-		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-			posX ++;
-
-		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
-
-			posX --;
-
-		}
-
-		updateTransform();
 
 	}
 
@@ -216,7 +225,7 @@ Element.prototype.coco = function () {
  * to Element when needing seperate handlers.
  */
 
-NodeList.prototype.coco = function () {
+NodeList.prototype.coco = function ( controls ) {
 
 	/* "this" is a NodeList */
 	var objects = this;
@@ -237,15 +246,7 @@ NodeList.prototype.coco = function () {
 	var origTransforms = [];
 
 
-	/*
-	 * Disabling pointer events on objects to:
- 	 * I. Disable default dragging behavior.
-	 * II. Disable clicking when dragging.
-	 */
-
 	for ( var i = 0; i < objects.length; i ++ ) {
-
-		objects[ i ].style.pointerEvents = 'none';
 
 		/*
 		 * Original transform of object
@@ -263,127 +264,148 @@ NodeList.prototype.coco = function () {
 
 
 	/*
-	 * Add grab cursor to document, indicate draggable
+	 * Check if enabled default controls
 	 */
 
-	document.documentElement.style.cursor = 'grab';
+	if ( controls != false ) {
 
+		/*
+		 * Disabling pointer events on objects to:
+		 * I. Disable default dragging behavior.
+		 * II. Disable clicking when dragging.
+		 */
 
-	/*
-	 * Adding event listeners on document
-	 */
+		for ( var i = 0; i < objects.length; i ++ ) {
 
-	document.addEventListener( "mousedown", dragStart, false );
-	document.addEventListener( "mouseup", dragEnd, false );
-	document.addEventListener( "mousemove", drag, false );
-
-	document.addEventListener( "keydown", checkKey, false );
-
-	/*
-	 * Touch events for mobile
-	 */
-
-	document.addEventListener( "touchstart", dragStart, false );
-	document.addEventListener( "touchend", dragEnd, false );
-	document.addEventListener( "touchmove", drag, false );
-
-
-
-	function dragStart( e ) {
-
-		if ( e.type === "touchstart" ) {
-
-			initialX = e.touches[ 0 ].clientX - xOffset;
-
-		} else {
-
-			initialX = e.clientX - xOffset;
+			objects[ i ].style.pointerEvents = 'none';
 
 		}
-
-		active = true;
-		click = true;
-
-	}
-
-	function dragEnd() {
-
-		initialX = currentX;
-
-		xOffset = currentX;
-		active = false;
 
 
 		/*
-		 * Click detection.
-		 * Simulates click if not dragging to compensate
-		 * disabling pointer events on objects.
+		 * Add grab cursor to document, indicate draggable
 		 */
 
-		if ( click == true ) {
-
-			for ( var i = 0; i < objects.length; i ++ ) {
-
-				objects[ i ].dispatchEvent( new MouseEvent( "click", {
-				    "view": window,
-				    "bubbles": true,
-				    "cancelable": false
-				} ) );
-
-			}
-
-		}
+		document.documentElement.style.cursor = 'grab';
 
 
-	}
+		/*
+		 * Adding event listeners on document
+		 */
 
-	function drag( e ) {
+		document.addEventListener( "mousedown", dragStart, false );
+		document.addEventListener( "mouseup", dragEnd, false );
+		document.addEventListener( "mousemove", drag, false );
 
-		if ( active ) {
+		document.addEventListener( "keydown", checkKey, false );
 
-			e.preventDefault();
+		/*
+		 * Touch events for mobile
+		 */
 
-			if ( e.type === "touchmove" ) {
+		document.addEventListener( "touchstart", dragStart, false );
+		document.addEventListener( "touchend", dragEnd, false );
+		document.addEventListener( "touchmove", drag, false );
 
-				currentX = e.touches[ 0 ].clientX - initialX;
+
+
+		function dragStart( e ) {
+
+			if ( e.type === "touchstart" ) {
+
+				initialX = e.touches[ 0 ].clientX - xOffset;
 
 			} else {
 
-				currentX = e.clientX - initialX;
+				initialX = e.clientX - xOffset;
 
 			}
 
+			active = true;
+			click = true;
+
+		}
+
+		function dragEnd() {
+
+			initialX = currentX;
+
 			xOffset = currentX;
+			active = false;
+
+
+			/*
+			 * Click detection.
+			 * Simulates click if not dragging to compensate
+			 * disabling pointer events on objects.
+			 */
+
+			if ( click == true ) {
+
+				for ( var i = 0; i < objects.length; i ++ ) {
+
+					objects[ i ].dispatchEvent( new MouseEvent( "click", {
+					    "view": window,
+					    "bubbles": true,
+					    "cancelable": false
+					} ) );
+
+				}
+
+			}
+
+
+		}
+
+		function drag( e ) {
+
+			if ( active ) {
+
+				e.preventDefault();
+
+				if ( e.type === "touchmove" ) {
+
+					currentX = e.touches[ 0 ].clientX - initialX;
+
+				} else {
+
+					currentX = e.clientX - initialX;
+
+				}
+
+				xOffset = currentX;
+
+				updateTransforms();
+
+				click = false;
+
+			}
+
+		}
+
+		function checkKey( e ) {
+
+		    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+
+				posZ += 3;
+
+			} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
+
+				posZ -= 3;
+
+			} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
+
+				posX ++;
+
+			} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
+
+				posX --;
+
+			}
 
 			updateTransforms();
 
-			click = false;
-
 		}
-
-	}
-
-	function checkKey( e ) {
-
-	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
-
-			posZ += 3;
-
-		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-			posZ -= 3;
-
-		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-			posX ++;
-
-		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
-
-			posX --;
-
-		}
-
-		updateTransforms();
 
 	}
 
