@@ -20,7 +20,7 @@ Import the script in your HTML:
 And add coco to an element:
 ```JS
 var element = document.querySelector('.3dCSS');
-var coco = element.coco();
+element.coco();
 ```
 
 Rotate the element by dragging, move with arrow keys.
@@ -28,6 +28,7 @@ Rotate the element by dragging, move with arrow keys.
 ### Move the camera
 
 ```JS
+var coco = element.coco();
 coco.camera(x, y, z);
 ```
 
@@ -35,7 +36,7 @@ coco.camera(x, y, z);
 
 ```JS
 var elements = document.querySelectorAll('.3dCSS, .3dPlane');
-var coco = elements.coco();
+elements.coco();
 ```
 
 ## Examples
