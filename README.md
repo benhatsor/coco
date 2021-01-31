@@ -14,7 +14,7 @@
 
 Import the script in your HTML:
 ```HTML
-<script src="https://unpkg.com/cocobean@0.1.5/coco.min.js"></script>
+<script src="https://unpkg.com/cocobean@0.1.6/coco.min.js"></script>
 ```
 
 And add coco to an element:
