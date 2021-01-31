@@ -25,6 +25,12 @@ element.coco();
 
 Rotate the element by dragging, move with arrow keys.
 
+### Disable default controls
+
+```JS
+element.coco(false);
+```
+
 ### Move the camera
 
 ```JS
