@@ -28,6 +28,7 @@ Rotate the element by dragging, move with arrow keys.
 ### Move the camera
 
 ```JS
+var element = document.querySelector('.3dCSS');
 var coco = element.coco();
 coco.camera(x, y, z);
 ```
