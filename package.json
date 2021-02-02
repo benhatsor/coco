@@ -1,6 +1,6 @@
 {
   "name": "cocobean",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Orientation controls for 3D CSS builds.",
   "main": "coco.min.js",
   "scripts": {
