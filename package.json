@@ -1,10 +1,14 @@
 {
   "name": "cocobean",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Orientation controls for 3D CSS builds.",
-  "main": "coco.min.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barhatsor/coco.git"
   },
   "keywords": [
     "css",
@@ -14,5 +18,9 @@
     "controls"
   ],
   "author": "Bar Hatsor",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barhatsor/coco/issues"
+  },
+  "homepage": "https://github.com/barhatsor/coco#readme"
 }
