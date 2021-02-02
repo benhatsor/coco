@@ -23,7 +23,7 @@ var element = document.querySelector('.3dCSS');
 element.coco();
 ```
 
-Rotate the element by dragging, move with arrow keys.
+Rotate by dragging, move with arrow keys.
 
 ### Disable default controls
 
@@ -35,8 +35,8 @@ element.coco(false);
 
 ```JS
 var element = document.querySelector('.3dCSS');
-var coco = element.coco();
-coco.camera(x, y, z);
+var scene = element.coco();
+scene.camera(x, y, z);
 ```
 
 ### Multiple elements (grouped coco)
