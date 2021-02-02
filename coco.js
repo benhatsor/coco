@@ -155,23 +155,31 @@ Element.prototype.coco = function ( defaults ) {
 
 	function checkKey( e ) {
 
-	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+		if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
 
-			posZ += 3;
-
-		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-			posZ -= 3;
-
-		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-			posX ++;
+			posX += 3;
 
 		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
 
-			posX --;
+			posX -= 3;
 
-		}
+		} else if ( e.keyCode == '32' ) { // up
+
+			posY += 3;
+
+		} else if ( e.keyCode == '16' ) { // down
+
+			posY -= 3;
+
+		} else if ( e.keyCode == '38' || e.keyCode == '87' ) { // forwards
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // backwards
+
+			posZ -= 3;
+
+		} 
 
 		updateTransform();
 
@@ -386,23 +394,31 @@ NodeList.prototype.coco = function ( defaults ) {
 
 	function checkKey( e ) {
 
-	    if ( e.keyCode == '38' || e.keyCode == '87' ) { // up
+	    	if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
 
-			posZ += 3;
-
-		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // down
-
-			posZ -= 3;
-
-		} else if ( e.keyCode == '37' || e.keyCode == '65' ) { // left
-
-			posX ++;
+			posX += 3;
 
 		} else if ( e.keyCode == '39' || e.keyCode == '68' ) { // right
 
-			posX --;
+			posX -= 3;
 
-		}
+		} else if ( e.keyCode == '32' ) { // up
+
+			posY += 3;
+
+		} else if ( e.keyCode == '16' ) { // down
+
+			posY -= 3;
+
+		} else if ( e.keyCode == '38' || e.keyCode == '87' ) { // forwards
+
+			posZ += 3;
+
+		} else if ( e.keyCode == '40' || e.keyCode == '83' ) { // backwards
+
+			posZ -= 3;
+
+		} 
 
 		updateTransforms();
 
