@@ -193,9 +193,8 @@ Element.prototype.coco = function ( defaults ) {
 
 	function updateTransform() {
 
-		object.style.transform = 'translateX(' + posX + 'px) ' +
-					 'translateY(' + posY + 'px) ' +
-					 'translateZ(' + posZ + 'px) ' +
+		object.style.transform = 'translate3d(' + posX + 'px ' + posY + 'px ' + posZ + 'px) ' +
+					 'rotateX(' + currentX + 'deg) ' +
 			                 'rotateY(' + currentX + 'deg) ' +
 			                 origTransform;
 
@@ -434,12 +433,10 @@ NodeList.prototype.coco = function ( defaults ) {
 
 		for ( var i = 0; i < objects.length; i ++ ) {
 
-			objects[ i ].style.transform = 'translateX(' + posX + 'px) ' +
-						       'translateY(' + posY + 'px) ' +
-						       'translateZ(' + posZ + 'px) ' +
-						       'rotateY(' + currentX + 'deg) ' +
-						       origTransforms[ i ];
-
+			objects[ i ].style.transform = 'translate3d(' + posX + 'px ' + posY + 'px ' + posZ + 'px) ' +
+			                 	       'rotateY(' + currentX + 'deg) ' +
+			              	     	       origTransforms[ i ];
+			
 		}
 
 	}
