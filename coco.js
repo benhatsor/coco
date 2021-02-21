@@ -24,6 +24,13 @@ Element.prototype.coco = function ( defaults ) {
 	var posY = 0;
 	var posZ = 0;
 
+	
+	/*
+	 * Add transform-style: preserve-3d to object
+	 */
+	
+	object.style.transformStyle = 'preserve-3d';
+
 
 	/*
 	 * Original transform of object
@@ -248,12 +255,18 @@ NodeList.prototype.coco = function ( defaults ) {
 	var posX = 0;
 	var posY = 0;
 	var posZ = 0;
-
+	
 
 	var origTransforms = [];
 
 
 	for ( var i = 0; i < objects.length; i ++ ) {
+		
+		/*
+		 * Add transform-style: preserve-3d to object
+		 */
+
+		objects[ i ].style.transformStyle = 'preserve-3d';
 
 		/*
 		 * Original transform of object
