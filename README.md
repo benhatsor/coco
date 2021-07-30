@@ -10,6 +10,10 @@
   <a target='_blank' href='./LICENSE'><img src='https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square'/></a>
 </p>
 
+## About coco
+
+- [Read the Medium article](https://barhatsor.medium.com/creating-3d-worlds-with-css-21186d754984)
+
 ## Usage
 
 Import the script in your HTML:
