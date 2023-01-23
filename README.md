@@ -1,4 +1,4 @@
-<h1 align="center"><a href="https://github.com/barhatsor/coco"><img src="https://raw.githubusercontent.com/barhatsor/coco/main/icon.svg" height="90" width="90"><br>coco</a></h1>
+<h1 align="center"><a href="https://github.com/benhatsor/coco"><img src="https://raw.githubusercontent.com/benhatsor/coco/main/icon.svg" height="90" width="90"><br>coco</a></h1>
 <p align="center">
   <h3 align="center">  
     CSS Orientation Controls
@@ -12,7 +12,7 @@
 
 ## About coco
 
-- [Read the Medium article](https://barhatsor.medium.com/creating-3d-worlds-with-css-21186d754984)
+- [Read the Medium article](https://benhatsor.medium.com/creating-3d-worlds-with-css-21186d754984)
 
 ## Usage
 
