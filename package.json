@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/barhatsor/coco.git"
+    "url": "git+https://github.com/benhatsor/coco.git"
   },
   "keywords": [
     "css",
@@ -20,8 +20,8 @@
   "author": "Ben Hatsor",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/barhatsor/coco/issues"
+    "url": "https://github.com/benhatsor/coco/issues"
   },
-  "homepage": "https://github.com/barhatsor/coco#readme"
+  "homepage": "https://github.com/benhatsor/coco#readme"
 }
 
