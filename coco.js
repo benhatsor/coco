@@ -1,7 +1,7 @@
 /*
  * coco
  * CSS Orientation Controls
- * By Bar Hatsor (MIT License)
+ * By Ben Hatsor (MIT License)
  *
  * CSS Euclidean Positioning System
  * With manual user drag (rotate) and keypad (move) override handling
