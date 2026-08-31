@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benhatsor/coco.git"
+    "url": "git+https://github.com/barhatsor/coco.git"
   },
   "keywords": [
     "css",
@@ -17,11 +17,11 @@
     "orbit",
     "controls"
   ],
-  "author": "Ben Hatsor",
+  "author": "Bar Hatsor",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/benhatsor/coco/issues"
+    "url": "https://github.com/barhatsor/coco/issues"
   },
-  "homepage": "https://github.com/benhatsor/coco#readme"
+  "homepage": "https://github.com/barhatsor/coco#readme"
 }
 
